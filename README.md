@@ -1,26 +1,38 @@
-# CS4080 HW4 — Chapters 8 & 9 Challenges
 
-This repository contains my Java implementation work for the Chapter 8 and Chapter 9 challenges from *Crafting Interpreters*.
+CS 4080 - Homework 4
 
-## Implemented coding challenges
+This repository contains the programming portions of Homework 4 
 
-- Chapter 8, Challenge 1: REPL supports both statements and bare expressions.
-- Chapter 8, Challenge 2: Reading a declared but uninitialized variable produces a runtime error.
-- Chapter 9, Challenge 3: Added `break;` support. `break` is only valid inside loops and exits the nearest enclosing loop.
+Chapter 8 - Statements and State
 
-## Source structure
+REPL
 
-- `com/craftinginterpreters/lox/` — jlox scanner, parser, AST, environment, and interpreter.
-- `com/craftinginterpreters/tool/GenerateAst.java` — AST generator updated to support the empty-field `Break` statement.
+I modified the Lox REPL to support both statements and expressions. Statements execute normally, while expressions are evaluated and their results are displayed automatically without requiring a print statement.
 
-## Compile
+Files: Parser.java, Interpreter.java, Lox.java
 
-```bash
-javac com/craftinginterpreters/lox/*.java
-```
+Uninitialized Variables
 
-## Run
+I modified the interpreter so that accessing a variable before it has been initialized or assigned produces a runtime error instead of automatically returning nil.
 
-```bash
-java com.craftinginterpreters.lox.Lox
-```
+Files: Interpreter.java, test_uninitialized.lox
+
+Chapter 9 - Control Flow
+
+Break Statement
+
+I added support for the break; statement in Lox. The parser checks whether break is used inside a loop and reports an error if it is not. When executed, break exits the nearest enclosing loop, including when it appears inside nested blocks or if statements.
+
+Files: Scanner.java, Parser.java, Interpreter.java, TokenType.java, Stmt.java, GenerateAst.java
+
+Testing
+
+I included test files to demonstrate the changes made to the interpreter.
+
+test_break.lox — Tests the break statement inside a loop.
+
+test_uninitialized.lox — Tests the runtime error when accessing an uninitialized variable.
+
+Written Responses
+
+The written responses for the Chapter 8 and Chapter 9 challenges are included in my submitted Homework 4 PDF.
